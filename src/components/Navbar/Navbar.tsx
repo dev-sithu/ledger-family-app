@@ -22,7 +22,7 @@ const Navbar: FC = () => {
       const threshold = 50;
 
       setIsBottom(scrollPosition + threshold >= pageHeight);
-    };``
+    };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);

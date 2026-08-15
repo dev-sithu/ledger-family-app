@@ -56,7 +56,9 @@ form {
 }
 
 .passcode-input {
+    display: flex;
     justify-content: center;
+    align-items: center;
 
     > .MuiFormControl-root {
         width: 50px !important;
@@ -67,12 +69,20 @@ form {
         }
     }
 
-    > input {
+    .otp-slot {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 50px;
         border: 1px rgba(0, 0, 0, 0.23) solid;
         border-radius: 4px;
         font-size: 1.3em;
         text-align: center;
-        padding: 16.5px 14px;
+    }
+
+    .otp-slot--active {
+        border-color: #1976d2;
     }
 }
 
