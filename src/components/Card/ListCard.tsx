@@ -1,5 +1,5 @@
 import {FC, useState} from "react";
-import {Box, Card, Divider, List, ListItem, ListItemText} from "@mui/material";
+import {Box, Card, Divider, List, ListItem, ListItemText, Typography} from "@mui/material";
 import {grey} from "@mui/material/colors";
 import dayjs from "dayjs";
 import {ListCardProps} from "../../types/declarations";
@@ -74,10 +74,10 @@ const ListCard: FC<ListCardProps> = ({ title, data, setBackdropOpen, type = 'exp
 
   const TwoLinesText = (primaryText: string, secondaryText?: string, className?: string) => {
     return (
-      <div onClick={() => setEditable(false)}>
-        <Box className={ className ? className : ''}>{ primaryText }</Box>
-        { secondaryText && <Box sx={{ color: 'text.secondary' }}>{ secondaryText}</Box>}
-      </div>
+      <span onClick={() => setEditable(false)}>
+        <Typography className={ className ? className : ''} component="span" display="block">{ primaryText }</Typography>
+        { secondaryText && <Typography component="span" display="block" sx={{ color: 'text.secondary' }}>{ secondaryText}</Typography>}
+      </span>
     )
   }
 
