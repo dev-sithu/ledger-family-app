@@ -9,9 +9,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../state/store.ts";
 import {setOtp, togglePasscode} from "../state/slices/userSlice.ts";
 
-const Slot = ({char, isActive, placeholderChar}: SlotProps) => (
+const Slot = ({char, isActive, placeholderChar, visible}: SlotProps & {visible: boolean}) => (
   <span className={`otp-slot${isActive ? ' otp-slot--active' : ''}`}>
-    {char ?? placeholderChar ?? ''}
+    {char ? (visible ? char : '•') : (placeholderChar ?? '')}
   </span>
 );
 
@@ -57,7 +57,7 @@ const PasscodeInput: FC<PasscodeInputProps> = ({ action, setValue, clearErrors, 
               {slots.map((slot, index) => (
                 <Fragment key={index}>
                   {index > 0 && <span className="otp-separator">&nbsp;</span>}
-                  <Slot {...slot} />
+                  <Slot visible={visiblePasscode} {...slot} />
                 </Fragment>
               ))}
             </>
