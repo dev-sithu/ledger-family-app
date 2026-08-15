@@ -1,4 +1,4 @@
-import {FC, useContext, useEffect} from "react";
+﻿import {FC, useContext, useEffect, useRef} from "react";
 import {FormActionProps, FormUserValues, JSONValue, UserContextType, UserWithTokens} from "../../types/declarations";
 import {Box, Button} from "@mui/material";
 import Error from "../Error.tsx";
@@ -41,6 +41,15 @@ const FormPasscode: FC<FormActionProps> = ({ action }: FormActionProps) => {
       navigate(`/${action}`);
     }
   }, [action, email, navigate]);
+
+  const submitRef = useRef<() => void>(() => {});
+  submitRef.current = () => handleSubmit(submitForm)();
+
+  useEffect(() => {
+    if (otp.length === 6) {
+      submitRef.current();
+    }
+  }, [otp]);
 
   const query = useLazyQuery(
     async (formData: FormUserValues) => {
@@ -110,3 +119,5 @@ const FormPasscode: FC<FormActionProps> = ({ action }: FormActionProps) => {
 }
 
 export default FormPasscode;
+
+
